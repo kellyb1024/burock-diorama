@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>BUROCK 현장 디오라마 3D (50×50 아트박스, 실제 축척)</title>
+<title>BUROCK Festival Site Diorama 3D (50×50 cm art box, real scale)</title>
 <style>
   body { margin: 0; font-family: var(--font-sans, -apple-system, "Apple SD Gothic Neo", sans-serif); color: var(--foreground, #111); }
   .bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
@@ -25,20 +25,20 @@
 <body>
 <div class="bar">
   <div class="seg" id="seg">
-    <button data-s="34" class="on">약 1:34 (롱75 박스)</button>
+    <button data-s="34" class="on">≈1:34 (18 cm container box)</button>
     <button data-s="50">1:50</button>
   </div>
   <span class="hint">Click and drag to rotate. Scroll to zoom. Hover over an object to see its real size.</span>
 </div>
 <div id="wrap"><div id="tip"></div></div>
 <div class="stats">
-  <div><div class="label">판 50×50cm의 실제 넓이</div><div class="value" id="vArea"></div></div>
-  <div><div class="label">사람 모형 (키 1.7m)</div><div class="value" id="vPerson"></div></div>
-  <div><div class="label">20ft 컨테이너 길이</div><div class="value" id="vCont"></div></div>
-  <div><div class="label">마스코트 등신대</div><div class="value" id="vMascot"></div></div>
+  <div><div class="label">Real area of the 50×50 cm board</div><div class="value" id="vArea"></div></div>
+  <div><div class="label">Person figure (1.7 m tall)</div><div class="value" id="vPerson"></div></div>
+  <div><div class="label">20 ft container length</div><div class="value" id="vCont"></div></div>
+  <div><div class="label">Mascot standee</div><div class="value" id="vMascot"></div></div>
 </div>
 <table>
-  <thead><tr><th>요소</th><th>실제 크기</th><th>모형 크기</th><th>근거</th></tr></thead>
+  <thead><tr><th>Item</th><th>Real size</th><th>Model size</th><th>Source</th></tr></thead>
   <tbody id="tbl"></tbody>
 </table>
 
@@ -57,16 +57,16 @@ const KFONT = '"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif';
 const NAVY = '#0B3387', DEEP = '#011456', GOLD = '#F5B800', RED = '#C90614', SKY = '#2F6BFF';
 
 const ITEMS = [
-  { n: '랜드마크 컨테이너 ×6', d: [6.06, 2.44, 2.59], src: '슬라이드 p.21 / 20ft 표준 규격. 측면 그림은 임시' },
-  { n: '마스코트 등신대 (까리·아나·끼루)', d: [1.7], src: '슬라이드 p.35–36 / 일러: 캐릭터 PNG / 키 1.7m는 내 가정' },
-  { n: '쓰레기 수거존 부스 (천막)', d: [3, 3, 3.4], src: '슬라이드 p.35–36 / 3×3m 천막은 내 가정' },
-  { n: '관객 사람 모형', d: [1.7], src: '내 가정 (평균 키)' },
-  { n: '무대 (압축판)', d: [9, 4.4, 1.3], src: '내 가정. 실제 메인 무대보다 훨씬 작게 줄임' },
-  { n: '무대 LED (쓰레기 인포그래픽)', d: [6, 3.4], src: '슬라이드 p.37 / 크기는 내 가정' },
-  { n: '수거율 스크린 (87%)', d: [1.4, 2.5], src: '슬라이드 p.39 / 크기는 내 가정' },
-  { n: 'X배너', d: [0.6, 1.8], src: '슬라이드 p.35 / 크기는 내 가정' },
-  { n: '가로등 배너 ×2', d: [0.6, 2], src: '슬라이드 p.25 / 크기는 내 가정' },
-  { n: '봉다리 (흰 봉투)', d: [0.3, 0.4], src: '슬라이드 p.33 / 크기는 내 가정' },
+  { n: 'Landmark containers ×6', d: [6.06, 2.44, 2.59], src: 'Slide p.21 / 20 ft standard size. Side art is a placeholder' },
+  { n: 'Mascot standees (Kkari, Ana, Kkiru)', d: [1.7], src: 'Slides p.35–36 / team character art / 1.7 m height assumed' },
+  { n: 'Trash Collection Zone booth (tent)', d: [3, 3, 3.4], src: 'Slides p.35–36 / 3×3 m tent assumed' },
+  { n: 'Audience figure', d: [1.7], src: 'Assumed (average height)' },
+  { n: 'Stage (scaled down)', d: [9, 4.4, 1.3], src: 'Assumed. Much smaller than the real main stage' },
+  { n: 'Stage LED (trash infographic)', d: [6, 3.4], src: 'Slide p.37 / size assumed' },
+  { n: 'Collection rate screen (87%)', d: [1.4, 2.5], src: 'Slide p.39 / size assumed' },
+  { n: 'X-banner', d: [0.6, 1.8], src: 'Slide p.35 / size assumed' },
+  { n: 'Lamppost banners ×2', d: [0.6, 2], src: 'Slide p.25 / size assumed' },
+  { n: 'Bongdari (white trash bag)', d: [0.3, 0.4], src: 'Slide p.33 / size assumed' },
 ];
 
 // ---------- helpers ----------
@@ -100,7 +100,7 @@ scene.add(sun);
 // ---------- art box ----------
 const plinth = new THREE.Mesh(new THREE.BoxGeometry(50, 12, 50), std(0xf3f2ee, { roughness: 0.95 }));
 plinth.position.y = -6.05; plinth.receiveShadow = true; scene.add(plinth);
-tag(plinth, { n: '아트박스 (상판 50×50cm)', d: [50, 50], cm: true });
+tag(plinth, { n: 'Art box (50×50 cm top)', d: [50, 50], cm: true });
 const clip = [new THREE.Plane(new THREE.Vector3(1, 0, 0), 25), new THREE.Plane(new THREE.Vector3(-1, 0, 0), 25), new THREE.Plane(new THREE.Vector3(0, 0, 1), 25), new THREE.Plane(new THREE.Vector3(0, 0, -1), 25)];
 
 const site = new THREE.Group(); scene.add(site);
@@ -119,7 +119,7 @@ const groundTex = tex(1024, 1024, (g, w, h) => {
 });
 const ground = new THREE.Mesh(new THREE.PlaneGeometry(GW, GW), new THREE.MeshStandardMaterial({ map: groundTex, roughness: 1, clippingPlanes: clip }));
 ground.rotation.x = -Math.PI / 2; ground.position.y = 0.01; ground.receiveShadow = true; site.add(ground);
-tag(ground, { n: '잔디 (삼락생태공원)', d: [], src: '슬라이드 p.31 Samnak Park' });
+tag(ground, { n: 'Grass (Samnak Park)', d: [], src: 'Slide p.31' });
 
 // ---------- containers ----------
 function corrugate(g, w, h, base) { g.fillStyle = base; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 18) { g.fillStyle = 'rgba(255,255,255,0.07)'; g.fillRect(x, 0, 7, h); g.fillStyle = 'rgba(0,0,0,0.08)'; g.fillRect(x + 9, 0, 3, h); } g.fillStyle = 'rgba(0,0,0,0.25)'; g.fillRect(0, 0, w, 10); g.fillRect(0, h - 12, w, 12); }
@@ -145,7 +145,7 @@ function container(name, x, z, ry, { y = 0, open = false } = {}) {
   const front = open ? new THREE.MeshStandardMaterial({ map: openTex, roughness: 0.9 }) : end;
   const m = add(new THREE.Mesh(new THREE.BoxGeometry(CL, CH, CW), [front, end, top, top, side, side]), grp);
   m.position.y = CH / 2;
-  const info = { n: `랜드마크 컨테이너: ${name}`, d: [6.06, 2.44, 2.59], src: '슬라이드 p.21 (측면 그림은 임시)' };
+  const info = { n: `Landmark container: ${name}`, d: [6.06, 2.44, 2.59], src: 'Slide p.21 (side art is a placeholder)' };
   tag(m, info);
   if (open) {
     const doorM = new THREE.MeshStandardMaterial({ map: endTex, roughness: 0.55, metalness: 0.25 });
@@ -168,7 +168,7 @@ container('Dongbaek Island', 6.8, -4.55, R90 - 0.06 + Math.PI, { y: CH * 2 });
 
 // ---------- stage ----------
 const stage = new THREE.Group(); stage.position.set(0, 0, -6.1); site.add(stage);
-const stageInfo = { n: '무대 (압축판)', d: [9, 4.4, 1.3], src: '내 가정' };
+const stageInfo = { n: 'Stage (scaled down)', d: [9, 4.4, 1.3], src: 'Assumed' };
 const skirt = textPanel(1024, 148, '#0d0d0d', [{ t: '2027 BUSANROCK INTERNATIONAL FESTIVAL', s: 50, y: 92 }]);
 const deck = add(new THREE.Mesh(new THREE.BoxGeometry(9, 1.3, 4.4), [std(0x141414), std(0x141414), std(0x262626), std(0x141414), new THREE.MeshStandardMaterial({ map: skirt }), std(0x141414)]), stage);
 deck.position.y = 0.65; tag(deck, stageInfo);
@@ -177,19 +177,19 @@ trussTex.wrapT = THREE.RepeatWrapping;
 const trussM = new THREE.MeshStandardMaterial({ map: trussTex, transparent: true, alphaTest: 0.4, side: THREE.DoubleSide, metalness: 0.5, roughness: 0.4 });
 function truss(len, horiz = false) { const g = new THREE.Group(); [[0.2, 0], [-0.2, 0], [0, 0.2], [0, -0.2]].forEach(([a, b], i) => { const p = add(new THREE.Mesh(new THREE.PlaneGeometry(0.4, len), trussM), g); if (i < 2) { p.position.x = a; p.rotation.y = R90; } else { p.position.z = b; } }); if (horiz) g.rotation.z = R90; return g; }
 const H = 8.2;
-[[-4.6, -1.9], [4.6, -1.9], [-4.6, 1.9], [4.6, 1.9]].forEach(([x, z]) => { const t = truss(H); t.position.set(x, H / 2, z); stage.add(t); t.children.forEach(c => tag(c, { n: '트러스 타워', d: [8.2], src: '내 가정' })); });
+[[-4.6, -1.9], [4.6, -1.9], [-4.6, 1.9], [4.6, 1.9]].forEach(([x, z]) => { const t = truss(H); t.position.set(x, H / 2, z); stage.add(t); t.children.forEach(c => tag(c, { n: 'Truss tower', d: [8.2], src: 'Assumed' })); });
 [-1.9, 1.9].forEach(z => { const t = truss(9.6, true); t.position.set(0, H, z); stage.add(t); });
 const roof = add(new THREE.Mesh(new THREE.BoxGeometry(10, 0.25, 4.6), std(0x1d1d1f)), stage); roof.position.y = H + 0.35; tag(roof, stageInfo);
 const scrim = add(new THREE.Mesh(new THREE.PlaneGeometry(8.8, 6.6), std(0x0b0b0c)), stage); scrim.position.set(0, 4.6, -2.0);
 const infoTex = tex(1024, 580, (g, w, h) => { g.fillStyle = '#070707'; g.fillRect(0, 0, w, h); g.fillStyle = '#fff'; g.beginPath(); g.ellipse(610, 250, 330, 160, -0.1, 0, 7); g.fill(); g.fillStyle = '#111'; g.font = `800 50px ${KFONT}`; g.textAlign = 'center'; g.fillText('야들아~ 가온 쓰레기는', 610, 235); g.fillText('챙기가 단디 버리래이~', 610, 300); });
 const scr = add(new THREE.Mesh(new THREE.PlaneGeometry(6, 3.4), new THREE.MeshBasicMaterial({ map: infoTex, toneMapped: false })), stage); scr.position.set(0, 4.5, -1.95);
-tag(scr, { n: '무대 LED: 쓰레기 인포그래픽', d: [6, 3.4], src: '슬라이드 p.37' });
+tag(scr, { n: 'Stage LED: trash infographic', d: [6, 3.4], src: 'Slide p.37' });
 const ana = STANDEES.ana; const anaImg = new Image(); anaImg.src = ana.src; anaImg.onload = () => { const c = infoTex.image.getContext('2d'); c.drawImage(anaImg, 70, 300, 150 * ana.w / ana.h * 1.6, 240); infoTex.needsUpdate = true; };
 const statTex = tex(280, 500, (g, w, h) => { g.fillStyle = '#070707'; g.fillRect(0, 0, w, h); g.fillStyle = '#fff'; g.font = `700 24px ${KFONT}`; g.textAlign = 'center'; g.fillText('오늘의 쓰레기 수거율', w / 2, 50); g.strokeStyle = GOLD; g.lineWidth = 3; for (let a = 0; a < 6.28; a += 0.18) { g.beginPath(); g.moveTo(w / 2 + Math.cos(a) * 60, 250 + Math.sin(a) * 60); g.lineTo(w / 2 + Math.cos(a) * 110, 250 + Math.sin(a) * 110); g.stroke(); } g.fillStyle = GOLD; g.font = `800 64px ${KFONT}`; g.fillText('87%', w / 2, 272); });
 const stat = add(new THREE.Mesh(new THREE.PlaneGeometry(1.4, 2.5), new THREE.MeshBasicMaterial({ map: statTex, toneMapped: false })), stage); stat.position.set(3.85, 4.6, 2.12);
-tag(stat, { n: '수거율 스크린', d: [1.4, 2.5], src: '슬라이드 p.39' });
+tag(stat, { n: 'Collection rate screen', d: [1.4, 2.5], src: 'Slide p.39' });
 // PA line arrays, subs, backline
-[-4.0, 4.0].forEach(x => { const pa = add(new THREE.Mesh(new THREE.BoxGeometry(0.7, 3.0, 0.8), std(0x111111)), stage); pa.position.set(x, 5.9, 2.3); tag(pa, { n: 'PA 스피커', d: [0.7, 3.0], src: '내 가정' }); });
+[-4.0, 4.0].forEach(x => { const pa = add(new THREE.Mesh(new THREE.BoxGeometry(0.7, 3.0, 0.8), std(0x111111)), stage); pa.position.set(x, 5.9, 2.3); tag(pa, { n: 'PA speaker', d: [0.7, 3.0], src: 'Assumed' }); });
 [-3.4, -2.2, 2.2, 3.4].forEach(x => { const s = add(new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.8, 0.8), std(0x111111)), stage); s.position.set(x, 0.4, 2.7); });
 const riser = add(new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.4, 1.8), std(0x2a2a2a)), stage); riser.position.set(0, 1.5, -0.9);
 const drum = add(new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.45, 20), std(0xdddddd)), stage); drum.rotation.x = R90; drum.position.set(0, 2.0, -0.6);
@@ -200,11 +200,11 @@ for (let x = -4; x <= 4; x += 1.6) { const l = add(new THREE.Mesh(new THREE.Cyli
 // crowd barrier
 const barTex = tex(256, 128, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = '#b9bcc0'; g.lineWidth = 8; g.strokeRect(4, 4, w - 8, h - 8); g.lineWidth = 3; for (let x = 20; x < w; x += 18) { g.beginPath(); g.moveTo(x, 8); g.lineTo(x, h - 8); g.stroke(); } });
 const barM = new THREE.MeshStandardMaterial({ map: barTex, transparent: true, alphaTest: 0.4, side: THREE.DoubleSide, metalness: 0.4, roughness: 0.5 });
-for (let x = -4.4; x < 4.5; x += 1.1) { const b = add(new THREE.Mesh(new THREE.PlaneGeometry(1.1, 1.1), barM)); b.position.set(x + 0.55, 0.6, -3.0); tag(b, { n: '무대 앞 펜스', d: [1.1, 1.1], src: '내 가정' }); }
+for (let x = -4.4; x < 4.5; x += 1.1) { const b = add(new THREE.Mesh(new THREE.PlaneGeometry(1.1, 1.1), barM)); b.position.set(x + 0.55, 0.6, -3.0); tag(b, { n: 'Crowd barrier', d: [1.1, 1.1], src: 'Assumed' }); }
 
 // ---------- trash collection zone ----------
 const booth = new THREE.Group(); booth.position.set(4.1, 0, 5.6); booth.rotation.y = -0.5; site.add(booth);
-const boothInfo = { n: '쓰레기 수거존 부스', d: [3, 3, 3.4], src: '슬라이드 p.35–36 / 크기 내 가정' };
+const boothInfo = { n: 'Trash Collection Zone booth', d: [3, 3, 3.4], src: 'Slides p.35–36 / size assumed' };
 [[-1.45, -1.45], [1.45, -1.45], [-1.45, 1.45], [1.45, 1.45]].forEach(([x, z]) => { const l = add(new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 2.5), std(0xdddddd)), booth); l.position.set(x, 1.25, z); tag(l, boothInfo); });
 const canopy = add(new THREE.Mesh(new THREE.ConeGeometry(2.15, 0.85, 4, 1, true), std(0xfafafa, { side: THREE.DoubleSide })), booth); canopy.position.y = 2.92; canopy.rotation.y = Math.PI / 4; tag(canopy, boothInfo);
 const valance = add(new THREE.Mesh(new THREE.BoxGeometry(2.95, 0.3, 2.95), std(0xfafafa)), booth); valance.position.y = 2.38; tag(valance, boothInfo);
@@ -213,8 +213,8 @@ const wall = add(new THREE.Mesh(new THREE.PlaneGeometry(2.9, 2.2), new THREE.Mes
 const counterTex = textPanel(600, 200, '#24205c', [{ t: 'BUSANROCK', s: 70, y: 95, wt: 800 }, { t: 'LEAVE ONLY NOISE  소리만 남기고 가세요', s: 24, y: 150, c: GOLD }]);
 const counter = add(new THREE.Mesh(new THREE.BoxGeometry(2.9, 1.0, 0.55), [std(0x24205c), std(0x24205c), std(0x24205c), std(0x24205c), new THREE.MeshStandardMaterial({ map: counterTex }), std(0x24205c)]), booth); counter.position.set(0, 0.5, 1.15); tag(counter, boothInfo);
 const head = add(new THREE.Mesh(new THREE.PlaneGeometry(2.9, 0.3), new THREE.MeshStandardMaterial({ map: textPanel(600, 64, RED, [{ t: '쓰레기 수거존  TRASH COLLECTION ZONE', s: 34, y: 45, wt: 800 }]) })), booth); head.position.set(0, 2.38, 1.49); tag(head, boothInfo);
-[[-1.0, 0x2f6bff], [-0.45, 0xf5b800], [0.1, 0x3a9d5d]].forEach(([x, c]) => { const bin = add(new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.22, 0.85, 14), std(c)), booth); bin.position.set(x + 2.1, 0.43, 0.6); tag(bin, { n: '분리수거함', d: [0.5, 0.85], src: '내 가정' }); });
-function xBanner(parent, x, z, ry, title) { const t = textPanel(200, 600, '#101030', [{ t: 'BUSANROCK', s: 28, y: 60 }, { t: title, s: 30, y: 140, c: GOLD }, { t: '1 · 2 · 3', s: 26, y: 260 }, { t: 'LEAVE ONLY NOISE', s: 18, y: 560 }]); const m = add(new THREE.Mesh(new THREE.BoxGeometry(0.6, 1.8, 0.03), [std(0x101030), std(0x101030), std(0x101030), std(0x101030), new THREE.MeshStandardMaterial({ map: t }), std(0x101030)]), parent); m.position.set(x, 0.92, z); m.rotation.y = ry; tag(m, { n: `X배너: ${title}`, d: [0.6, 1.8], src: '슬라이드 p.35' }); }
+[[-1.0, 0x2f6bff], [-0.45, 0xf5b800], [0.1, 0x3a9d5d]].forEach(([x, c]) => { const bin = add(new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.22, 0.85, 14), std(c)), booth); bin.position.set(x + 2.1, 0.43, 0.6); tag(bin, { n: 'Recycling bins', d: [0.5, 0.85], src: 'Assumed' }); });
+function xBanner(parent, x, z, ry, title) { const t = textPanel(200, 600, '#101030', [{ t: 'BUSANROCK', s: 28, y: 60 }, { t: title, s: 30, y: 140, c: GOLD }, { t: '1 · 2 · 3', s: 26, y: 260 }, { t: 'LEAVE ONLY NOISE', s: 18, y: 560 }]); const m = add(new THREE.Mesh(new THREE.BoxGeometry(0.6, 1.8, 0.03), [std(0x101030), std(0x101030), std(0x101030), std(0x101030), new THREE.MeshStandardMaterial({ map: t }), std(0x101030)]), parent); m.position.set(x, 0.92, z); m.rotation.y = ry; tag(m, { n: `X-banner: ${({'분리배출': 'sorting guide', '뱃지 받기': 'get a badge'})[title]}`, d: [0.6, 1.8], src: 'Slide p.35' }); }
 xBanner(booth, -2.0, 1.4, 0.2, '분리배출'); xBanner(booth, 1.95, 1.75, -0.2, '뱃지 받기');
 
 // ---------- mascot standees (team illustrations) ----------
@@ -226,11 +226,11 @@ function standee(key, x, z, ry, label) {
   const m = add(new THREE.Mesh(new THREE.PlaneGeometry(wid, hgt), new THREE.MeshStandardMaterial({ map: t, transparent: true, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.6 })), grp);
   m.position.y = hgt / 2 + 0.03; m.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map: t, alphaTest: 0.5 });
   const base = add(new THREE.Mesh(new THREE.BoxGeometry(wid * 0.7, 0.04, 0.35), std(0x2b2b2b)), grp); base.position.y = 0.02;
-  tag(m, { n: `마스코트 등신대: ${label}`, d: [Number(wid.toFixed(2)), 1.7], src: '팀 캐릭터 일러 / 슬라이드 p.35–36' });
+  tag(m, { n: `Mascot standee: ${label}`, d: [Number(wid.toFixed(2)), 1.7], src: 'Team character art / Slides p.35–36' });
 }
-standee('kkari', 2.3, 7.2, -0.35, '까리 (상어)');
-standee('ana', 6.4, 5.0, -0.9, '아나 (고등어)');
-standee('kkiru', -4.6, 4.2, 0.45, '끼루 (갈매기)');
+standee('kkari', 2.3, 7.2, -0.35, 'Kkari (shark)');
+standee('ana', 6.4, 5.0, -0.9, 'Ana (mackerel)');
+standee('kkiru', -4.6, 4.2, 0.45, 'Kkiru (seagull)');
 
 // ---------- pole banners ----------
 function pole(x, z, ry) {
@@ -238,12 +238,12 @@ function pole(x, z, ry) {
   add(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.09, 5.2), std(0x3a3a3a)), grp).position.y = 2.6;
   const b1 = textPanel(160, 540, '#111', [{ t: '부', s: 90, y: 120, c: GOLD, wt: 800 }, { t: '산', s: 90, y: 230, c: GOLD, wt: 800 }, { t: '락', s: 120, y: 380, wt: 800 }, { t: '2027', s: 30, y: 480 }]);
   const b2 = textPanel(160, 540, NAVY, [{ t: 'BUSAN', s: 34, y: 80, wt: 800 }, { t: 'ROCK', s: 40, y: 130, wt: 800 }, { t: '●', s: 120, y: 360, c: GOLD }]);
-  [[b1, -0.36], [b2, 0.36]].forEach(([t, dx]) => { const m = add(new THREE.Mesh(new THREE.PlaneGeometry(0.6, 2), new THREE.MeshStandardMaterial({ map: t, side: THREE.DoubleSide })), grp); m.position.set(dx, 3.7, 0); tag(m, { n: '가로등 배너', d: [0.6, 2], src: '슬라이드 p.25' }); });
+  [[b1, -0.36], [b2, 0.36]].forEach(([t, dx]) => { const m = add(new THREE.Mesh(new THREE.PlaneGeometry(0.6, 2), new THREE.MeshStandardMaterial({ map: t, side: THREE.DoubleSide })), grp); m.position.set(dx, 3.7, 0); tag(m, { n: 'Lamppost banner', d: [0.6, 2], src: 'Slide p.25' }); });
 }
 pole(-0.9, 7.2, 0.1); pole(1.5, 6.6, -0.2);
 
 // ---------- trees (Samnak Park edge) ----------
-function tree(x, z, s = 1) { const grp = new THREE.Group(); grp.position.set(x, 0, z); site.add(grp); add(new THREE.Mesh(new THREE.CylinderGeometry(0.12 * s, 0.18 * s, 2.4 * s), std(0x6b4f35)), grp).position.y = 1.2 * s; [[0, 3.2, 0, 1.5], [0.6, 2.8, 0.3, 1.1], [-0.5, 2.9, -0.4, 1.1]].forEach(([a, b, c, r]) => { const f = add(new THREE.Mesh(new THREE.IcosahedronGeometry(r * s, 1), std(0x4f7a3a, { flatShading: true })), grp); f.position.set(a * s, b * s, c * s); }); tag(grp.children[0], { n: '나무', d: [3.5 * s], src: '내 가정' }); }
+function tree(x, z, s = 1) { const grp = new THREE.Group(); grp.position.set(x, 0, z); site.add(grp); add(new THREE.Mesh(new THREE.CylinderGeometry(0.12 * s, 0.18 * s, 2.4 * s), std(0x6b4f35)), grp).position.y = 1.2 * s; [[0, 3.2, 0, 1.5], [0.6, 2.8, 0.3, 1.1], [-0.5, 2.9, -0.4, 1.1]].forEach(([a, b, c, r]) => { const f = add(new THREE.Mesh(new THREE.IcosahedronGeometry(r * s, 1), std(0x4f7a3a, { flatShading: true })), grp); f.position.set(a * s, b * s, c * s); }); tag(grp.children[0], { n: 'Tree', d: [3.5 * s], src: 'Assumed' }); }
 tree(6.8, 6.9, 0.75); tree(-6.9, 6.8, 0.7); tree(-7.2, 2.8, 0.6); tree(7.1, 2.2, 0.65);
 
 // ---------- people ----------
@@ -252,7 +252,7 @@ const TOPS = [0x1c1c1c, 0xf4f4f4, 0x0b3387, 0xc90614, 0xf5b800, 0x7c4cd0, 0x2f6b
 const BOTTOMS = [0x1f2a44, 0x222222, 0x3b4a66, 0x8a7a5c, 0xd9d4c7];
 const HAIR = [0x111111, 0x2a1d14, 0x5a3b22, 0x1a1a1a];
 const legG = new THREE.CapsuleGeometry(0.065, 0.62, 3, 6), torsoG = new THREE.CapsuleGeometry(0.16, 0.32, 4, 10), armG = new THREE.CapsuleGeometry(0.045, 0.48, 3, 6), headG = new THREE.SphereGeometry(0.11, 14, 12), hairG = new THREE.SphereGeometry(0.115, 14, 8, 0, Math.PI * 2, 0, Math.PI / 2), bagG = new THREE.BoxGeometry(0.24, 0.32, 0.08);
-const personInfo = { n: '관객 사람 모형', d: [1.7], src: '내 가정' };
+const personInfo = { n: 'Audience figure', d: [1.7], src: 'Assumed' };
 const spots = [];
 function free(x, z, r = 0.55) { return !spots.some(([a, b]) => Math.hypot(a - x, b - z) < r); }
 const EDGE = 8.0;
@@ -274,7 +274,7 @@ function person(x, z, faceX, faceZ, { cheer = false, bag = false, phone = false 
     else if (phone && side === 1) arm.rotation.x = -1.3;
     else arm.rotation.z = side * 0.08;
   });
-  if (bag) { const b = add(new THREE.Mesh(bagG, std(0xffffff)), p); b.position.set(-0.3, 0.72, 0.02); tag(b, { n: '봉다리 (흰 봉투)', d: [0.3, 0.4], src: '슬라이드 p.33' }); }
+  if (bag) { const b = add(new THREE.Mesh(bagG, std(0xffffff)), p); b.position.set(-0.3, 0.72, 0.02); tag(b, { n: 'Bongdari (white trash bag)', d: [0.3, 0.4], src: 'Slide p.33' }); }
 }
 const SX = 0, SZ = -6;
 // main crowd: dense at the barrier, thinning toward the back
@@ -324,8 +324,8 @@ renderer.domElement.addEventListener('pointermove', e => {
   let o = hit.object; while (!o.userData.info) o = o.parent;
   const i = o.userData.info;
   const real = i.cm ? i.d.map(v => v + 'cm').join(' × ') : i.d.map(v => v + 'm').join(' × ');
-  const model = i.cm || !i.d.length ? '' : `<br>모형: ${i.d.map(fmt).join(' × ')}`;
-  tip.innerHTML = `<b>${i.n}</b>${real ? '실제: ' + real : ''}${model}${i.src ? `<br><span class="src">${i.src}</span>` : ''}`;
+  const model = i.cm || !i.d.length ? '' : `<br>Model: ${i.d.map(fmt).join(' × ')}`;
+  tip.innerHTML = `<b>${i.n}</b>${real ? 'Real: ' + real : ''}${model}${i.src ? `<br><span class="src">${i.src}</span>` : ''}`;
   tip.style.display = 'block';
   tip.style.left = Math.min(e.clientX - r.left + 14, r.width - 240) + 'px';
   tip.style.top = (e.clientY - r.top + 14) + 'px';
